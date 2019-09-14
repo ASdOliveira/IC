@@ -4,7 +4,8 @@ File related to creation, crossover and mutation of the population
 import random
 
 #creates an aleatory popuplation, which the 1st and the last cities are equals.
-def createPop(vector):
+def createPop(origVector):  #origvector -> Thus, the original vector won't be lost
+    vector = origVector.copy()     # why not vector=origVector doesn't work?  when .remove(), retira nos 2 objs.
     createdPop = [None] * (len(vector)+1) 
 
     for i in range(len(vector)):
