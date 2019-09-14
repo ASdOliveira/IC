@@ -10,6 +10,6 @@ def euclidianDistance(v1, v2):
 #Calculate the fitness result for te distance
 def fitness(vector): 
 	distancia = 0
-	for i in range(len(vector)):
+	for i in range(len(vector)-1):
 		distancia += euclidianDistance(vector[i][1:],vector[i+1][1:])
 	return distancia
