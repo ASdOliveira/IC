@@ -1,4 +1,4 @@
-def readFile():
+def readDB():
     # Open input file
     infile = open('berlin52.tsp', 'r')
 
@@ -15,9 +15,12 @@ def readFile():
     nodelist = []
     N = int(intDimension)
     for i in range(0, int(intDimension)):
-        x,y = infile.readline().strip().split()[1:]
-        nodelist.append([float(x), float(y)])
+        #x,y = infile.readline().strip().split()[1:]
+        #nodelist.append([float(x), float(y)])
+        x,y,z = infile.readline().strip().split()
+        nodelist.append([int(x), float(y),float(z)])
 
     # Close input file
     infile.close()
     return nodelist
+
