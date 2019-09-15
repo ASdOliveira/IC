@@ -18,8 +18,21 @@ def createPop(origVector):  #origvector -> Thus, the original vector won't be lo
         vector.remove(x) #remove the city, thus, won't exist the repeated cities.
     return createdPop
 
-def crossover():
+def crossover(v1,v2,cutPointmin,cutPointmax):
+    vec1 = v1[:cutPointmin] + v2[cutPointmin:cutPointmax] + v1[cutPointmax:]
+    vec2 = v2[:cutPointmin] + v1[cutPointmin:cutPointmax] + v2[cutPointmax:]   
+    return vec1, vec2
+
+
+def mutation(vector):
     return
 
-def mutation():
-    return
+
+#Auxiliar function, to detect repeated items
+
+"""
+vetor1 = [1,2,3,4,5,1]
+vetor2 = [2,1,4,5,3,2]
+cutPointmin = 2
+cutPointmax = 4
+test1,test2 = crossover(vetor1,vetor2,cutPointmin,cutPointmax)"""
