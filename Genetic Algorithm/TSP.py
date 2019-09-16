@@ -44,7 +44,7 @@ while stopCondition == False :
         fitvalue = dist[0]
         bestRoute = pop[0]
     else:
-        if fitvalue < dist[0]:
+        if dist[0] < fitvalue:  
             fitvalue = dist[0]
             bestRoute = pop[0]
             k = 0
@@ -55,7 +55,7 @@ while stopCondition == False :
             pop[2],pop[3] = population.crossover(pop[0],pop[1],cutPointmin,cutPointmax)
             print(k)
             k = k + 1
-    if k >= 20:
+    if k >= 10: #debugaaaar
         stopCondition = True
 print(fitvalue)
 print(bestRoute)
