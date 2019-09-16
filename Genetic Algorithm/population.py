@@ -2,6 +2,7 @@
 File related to creation, crossover and mutation of the population
 """
 import random
+import fileText
 
 #creates an aleatory popuplation, which the 1st and the last cities are equals.
 def createPop(origVector):  #origvector -> Thus, the original vector won't be lost
@@ -41,19 +42,15 @@ def crossover(parent1,parent2):
 
     child = childP1 + childP2
     child.append(child[0])
-    print (child) 
+    fileText.writeDB("child" + str(child)) 
     return child
 
 
 def mutation(vector):
-    return
+    i1 = random.randint(1,(len(vector) - 2)) #don't mutate the head and tail values
+    i2 = random.randint(1,(len(vector) - 2)) 
+    temp = vector[i1]
+    vector[i1] = vector[i2]
+    vector[i2] = temp
+    return vector
 
-
-#Auxiliar function, to detect repeated items
-
-"""
-vetor1 = [1,2,3,4,5,1]
-vetor2 = [2,1,4,5,3,2]
-cutPointmin = 2
-cutPointmax = 4
-test1,test2 = crossover(vetor1,vetor2,cutPointmin,cutPointmax)"""
