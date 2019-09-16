@@ -1,3 +1,5 @@
+from datetime import datetime
+
 def readDB():
     # Open input file
     infile = open('berlin52.tsp', 'r')
@@ -24,3 +26,13 @@ def readDB():
     infile.close()
     return nodelist
 
+
+def writeDB(text):
+    try:
+        file = open("Log.txt", "a")
+        dateTimeObj = datetime.now()
+        timestampStr = dateTimeObj.strftime("%d-%b-%Y (%H:%M:%S.%f)")
+        file.write(timestampStr + "  "+ text + "\n")
+        file.close()
+    except:
+        print("lascou")
