@@ -23,6 +23,7 @@ k = 0
 j = 0
 dist = [0]*popQtd
 stopCondition = False
+percentOfElit = 0.2
 
 cities = [] #create an empty list with cityQtd elements.
 pop = []
@@ -61,11 +62,10 @@ while stopCondition == False :
             j = j + 1
             fileText.writeDB("j value: " + str(j)) #prints into TXT
         else:
-            ##cutPointmin = 2
-            cutPointmax = 4
             pop = list(pop)
-            pop[2] = population.crossover(pop[0],pop[1])
-            pop[3] = population.crossover(pop[1],pop[0])
+            for i in range(int(percentOfElit*(len(pop)))): 
+                pop[i] = population.crossover(pop[i],pop[i+1])
+                pop[i] = population.mutation(pop[i])
             fileText.writeDB("k value: " + str(k))
             fileText.writeDB ("fitvalue: " + str(fitvalue))
             k = k + 1
