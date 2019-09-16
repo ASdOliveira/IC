@@ -11,13 +11,14 @@ import calculate
 listOfCities = fileText.readDB()
 
 cityQtd = 5  #quantity of cities that will be used
-popQtd = 4
-cities = [None] * cityQtd #create an empty list with cityQtd elements.
+popQtd = 5
+cities = [] #create an empty list with cityQtd elements.
 pop = []
 pop = list(pop)
 if (cityQtd != 52):
     for i in range(cityQtd):
-        cities[i] = listOfCities[i]
+        #cities[i] = listOfCities[i]
+        cities.append(listOfCities[i])
         #print(cities[i][0])
 else:
     cities = listOfCities
@@ -28,7 +29,8 @@ for i in range(popQtd):
 fitvalue = 0
 bestRoute = []
 k = 0
-dist = [0,0,0,0,0,0]
+j = 0
+dist = [0]*popQtd
 stopCondition = False
 ########### main::
 while stopCondition == False :
@@ -48,14 +50,19 @@ while stopCondition == False :
             fitvalue = dist[0]
             bestRoute = pop[0]
             k = 0
+            j = j + 1
+            print ("j value: " + str(j))
         else:
-            cutPointmin = 2
+            ##cutPointmin = 2
             cutPointmax = 4
             pop = list(pop)
-            pop[2],pop[3] = population.crossover(pop[0],pop[1],cutPointmin,cutPointmax)
-            print(k)
+            pop[2] = population.crossover(pop[0],pop[1])
+            pop[3] = population.crossover(pop[1],pop[0])
+            print("k value: " + str(k))
+            print ("fitvalue: " + str(fitvalue))
             k = k + 1
-    if k >= 10: #debugaaaar
+            j = 0
+    if k >= 30: #debugaaaar
         stopCondition = True
-print(fitvalue)
-print(bestRoute)
+print("Last Fitvalue: " + str(fitvalue))
+print("Last BestRoute" + str(bestRoute))

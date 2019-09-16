@@ -18,10 +18,31 @@ def createPop(origVector):  #origvector -> Thus, the original vector won't be lo
         vector.remove(x) #remove the city, thus, won't exist the repeated cities.
     return createdPop
 
-def crossover(v1,v2,cutPointmin,cutPointmax):
-    vec1 = v1[:cutPointmin] + v2[cutPointmin:cutPointmax] + v1[cutPointmax:]
-    vec2 = v2[:cutPointmin] + v1[cutPointmin:cutPointmax] + v2[cutPointmax:]   
-    return vec1, vec2
+def crossover(parent1,parent2):
+    #vec1 = v1[:cutPointmin] + v2[cutPointmin:cutPointmax] + v1[cutPointmax:]
+    #vec2 = v2[:cutPointmin] + v1[cutPointmin:cutPointmax] + v2[cutPointmax:]  
+    child = []
+    childP1 = []
+    childP2 = []
+   
+    geneA = int(random.random() * len(parent1))
+    geneB = int(random.random() * len(parent1))
+
+    startGene = min(geneA, geneB)
+    endGene = max(geneA, geneB)
+
+    for i in range(startGene, endGene):
+        childP1.append(parent1[i])
+        
+    for i in range(len(parent2)):
+        if parent2[i] not in childP1:
+            if parent2[i] not in childP2:
+                childP2.append(parent2[i]) 
+
+    child = childP1 + childP2
+    child.append(child[0])
+    print (child) 
+    return child
 
 
 def mutation(vector):
