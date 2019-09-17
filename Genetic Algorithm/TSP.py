@@ -14,9 +14,9 @@ listOfCities = fileText.readDB()
 fileText.writeDB("initializing")
 
 ############### "Defines" #####################
-cityQtd = 5  #quantity of cities that will be used
-popQtd = 5
-NumInteracoes  = 30
+cityQtd = 10  #quantity of cities that will be used
+popQtd = 1000
+NumInteracoes  = 1000
 fitvalue = 0
 bestRoute = []
 k = 0
