@@ -14,13 +14,15 @@ listOfCities = fileText.readDB()
 fileText.writeDB("initializing")
 
 ############### "Defines" #####################
-cityQtd = 10  #quantity of cities that will be used
-popQtd = 1000
-NumInteracoes  = 1000
+cityQtd = 52 #quantity of cities that will be used
+popQtd = 10000
+NumInteracoesCertas  = 10000
+NumInteracoesTotal = 20000
 fitvalue = 0
 bestRoute = []
 k = 0
 j = 0
+counterInt = 0
 dist = [0]*popQtd
 stopCondition = False
 percentOfElit = 0.2
@@ -60,17 +62,22 @@ while stopCondition == False :
             bestRoute = pop[0]
             k = 0
             j = j + 1
-            fileText.writeDB("j value: " + str(j)) #prints into TXT
+            #fileText.writeDB("j value: " + str(j)) #prints into TXT
         else:
             pop = list(pop)
             for i in range(int(percentOfElit*(len(pop)))): 
                 pop[i] = population.crossover(pop[i],pop[i+1])
                 pop[i] = population.mutation(pop[i])
-            fileText.writeDB("k value: " + str(k))
-            fileText.writeDB ("fitvalue: " + str(fitvalue))
+           # fileText.writeDB("k value: " + str(k))
+           # fileText.writeDB ("fitvalue: " + str(fitvalue))
             k = k + 1
             j = 0
-    if k >= NumInteracoes: 
+    counterInt = counterInt + 1
+    if counterInt >= NumInteracoesTotal:
         stopCondition = True
+    if k >= NumInteracoesCertas: 
+        stopCondition = True
+fileText.writeDB("counterInt: " + str(counterInt))
+fileText.writeDB("Interacoes corretas: " + str(NumInteracoesCertas))
 fileText.writeDB("Last Fitvalue: " + str(fitvalue))
 fileText.writeDB("Last BestRoute" + str(bestRoute))

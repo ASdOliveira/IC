@@ -42,7 +42,7 @@ def crossover(parent1,parent2):
 
     child = childP1 + childP2
     child.append(child[0])
-    fileText.writeDB("child" + str(child)) 
+   # fileText.writeDB("child" + str(child)) 
     return child
 
 
