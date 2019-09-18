@@ -46,7 +46,8 @@ def crossover(parent1,parent2):
     return child
 
 
-def mutation(vector):
+def mutation(Origvector):
+    vector = Origvector.copy()
     i1 = random.randint(1,(len(vector) - 2)) #don't mutate the head and tail values
     i2 = random.randint(1,(len(vector) - 2)) 
     temp = vector[i1]

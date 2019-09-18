@@ -7,7 +7,7 @@ Teacher: Carmelo bastos
 import fileText
 import population
 import calculate
-
+import plot
 #Import the cities
 listOfCities = fileText.readDB()
 
@@ -15,9 +15,9 @@ fileText.writeDB("initializing")
 
 ############### "Defines" #####################
 cityQtd = 52 #quantity of cities that will be used
-popQtd = 10000
-NumInteracoesCertas  = 10000
-NumInteracoesTotal = 20000
+popQtd = 2000
+NumInteracoesCertas  = 1000
+NumInteracoesTotal = 10000
 fitvalue = 0
 bestRoute = []
 k = 0
@@ -42,7 +42,7 @@ else:
 for i in range(popQtd):
     pop.append(population.createPop(cities))
 ########################################
-
+fileText.writeDB("Population was created")
 ########### main::
 while stopCondition == False :
 
@@ -66,8 +66,8 @@ while stopCondition == False :
         else:
             pop = list(pop)
             for i in range(int(percentOfElit*(len(pop)))): 
-                pop[i] = population.crossover(pop[i],pop[i+1])
-                pop[i] = population.mutation(pop[i])
+                pop[(len(pop)-1) - i] = population.crossover(pop[i],pop[i+1])
+                pop[(len(pop)-1) - i] = population.mutation(pop[(len(pop)-1) - i])
            # fileText.writeDB("k value: " + str(k))
            # fileText.writeDB ("fitvalue: " + str(fitvalue))
             k = k + 1
@@ -81,3 +81,4 @@ fileText.writeDB("counterInt: " + str(counterInt))
 fileText.writeDB("Interacoes corretas: " + str(NumInteracoesCertas))
 fileText.writeDB("Last Fitvalue: " + str(fitvalue))
 fileText.writeDB("Last BestRoute" + str(bestRoute))
+plot.plot(bestRoute)
