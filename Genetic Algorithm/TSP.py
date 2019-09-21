@@ -16,7 +16,7 @@ fileText.writeDB("initializing")
 ############### "Defines" #####################
 cityQtd = 52 #quantity of cities that will be used
 popQtd = 2000
-NumInteracoesCertas  = 1000
+NumInteracoesCertas  = 2000
 NumInteracoesTotal = 10000
 fitvalue = 0
 bestRoute = []
@@ -73,6 +73,7 @@ while stopCondition == False :
             k = k + 1
             j = 0
     counterInt = counterInt + 1
+    fileText.writeDB("counterInt: " + str(counterInt))
     if counterInt >= NumInteracoesTotal:
         stopCondition = True
     if k >= NumInteracoesCertas: 
