@@ -8,9 +8,36 @@
 
 from PSO import PSO
 import function_opt
+import random
+import fileText
 
+#parameters that were given
+particles = 30
+dimensions = 30
+max_iter = 10000
+simut_quantity = 10
+rastriginBound = [-5.12, 5.12] #according the article sent
+sphereBound = [-100, 100]      #according the article sent
 
+#auxiliar variables
+initial_position_sphere = [] #contains the particle's initial position
+initial_position_rastrigin = []
+sphere_bounds = []
+rastrigin_bounds = []
 
-initial=[5,5]               # initial starting location [x1,x2...]
-bounds=[(-10,10),(-10,10)]  # input bounds [(x1_min,x1_max),(x2_min,x2_max)...]
-PSO(function_opt.func1, initial, bounds, num_particles=15, maxiter=30, verbose=True)
+fileText.writeDB("Initializing...")
+
+#tools that will help to fill the initial and bounds variables
+for i in range(0,dimensions): 
+    initial_position_sphere.append(random.random()*sphereBound[1])
+    initial_position_rastrigin.append(random.random()*rastriginBound[1])
+    sphere_bounds.append(sphereBound)
+    rastrigin_bounds.append(rastriginBound)
+
+for i in range(0,simut_quantity):
+    fileText.writeDB("Iteraction number:" + str(i))
+    PSO(function_opt.sphere, initial_position_sphere, sphere_bounds, particles, max_iter, verbose=True)
+    PSO(function_opt.rastrigin,initial_position_rastrigin, rastrigin_bounds, particles, max_iter, verbose=True)
+    fileText.writeDB("END interection")
+
+fileText.writeDB("END all")
