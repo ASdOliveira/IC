@@ -4,6 +4,7 @@
 
 import random
 import math
+import fileText
 #--------------------PSO's LOGIC--------------------------------------------------+
 
 class Particle:
@@ -29,9 +30,9 @@ class Particle:
                     
     # update new particle velocity
     def update_velocity(self,pos_best_g):
-        w=0.5       # constant inertia weight (how much to weigh the previous velocity)
-        c1=1        # cognative constant
-        c2=2        # social constant
+        w=0.8       # constant inertia weight (how much to weigh the previous velocity)
+        c1=2.05        # cognative constant
+        c2=2.05        # social constant
         
         for i in range(0,num_dimensions):
             r1=random.random()
@@ -71,7 +72,7 @@ class PSO():
         # begin optimization loop
         i=0
         while i<maxiter:
-            if verbose: print(f'iter: {i:>4d}, best solution: {err_best_g:10.6f}')
+            if verbose: fileText.writeDB(f'iter: {i:>4d}, best solution: {err_best_g:10.6f}')
             # cycle through particles in swarm and evaluate fitness
             for j in range(0,num_particles):
                 swarm[j].evaluate(costFunc)
@@ -88,6 +89,6 @@ class PSO():
             i+=1
 
         # print final results
-        print('\nFINAL SOLUTION:')
-        print(f'   > {pos_best_g}')
-        print(f'   > {err_best_g}\n')
+        fileText.writeDB('\nFINAL SOLUTION:')
+        fileText.writeDB(f'   > {pos_best_g}')
+        fileText.writeDB(f'   > {err_best_g}')
