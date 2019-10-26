@@ -57,7 +57,7 @@ class Particle:
 
        
 class PSO():
-    def __init__(self, costFunc, x0, bounds, num_particles, maxiter, verbose=False):
+    def __init__(self, costFunc, x0, bounds, num_particles, maxiter, verbose=False,filename=''):
         global num_dimensions
 
         num_dimensions=len(x0)
@@ -72,7 +72,7 @@ class PSO():
         # begin optimization loop
         i=0
         while i<maxiter:
-            if verbose: fileText.writeDB(f'iter: {i:>4d}, best solution: {err_best_g:10.6f}')
+            if verbose: fileText.writeDB(str(filename),str(err_best_g))
             # cycle through particles in swarm and evaluate fitness
             for j in range(0,num_particles):
                 swarm[j].evaluate(costFunc)
@@ -89,6 +89,6 @@ class PSO():
             i+=1
 
         # print final results
-        fileText.writeDB('\nFINAL SOLUTION:')
-        fileText.writeDB(f'   > {pos_best_g}')
-        fileText.writeDB(f'   > {err_best_g}')
+        fileText.writeDB(filename,'\nFINAL SOLUTION:')
+        fileText.writeDB(filename,f'   > {pos_best_g}')
+        fileText.writeDB(filename,f'   > {err_best_g}')

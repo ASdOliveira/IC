@@ -17,9 +17,9 @@ def readDB():
     return nodelist
 
 
-def writeDB(text):
+def writeDB(file,text):
     try:
-        file = open("Log.txt", "a")
+        file = open(file +".txt", "a")
         file.write(text + "\n")
         file.close()
     except:
