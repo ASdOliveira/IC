@@ -1,18 +1,15 @@
 "File destinated to handle the Log File"
-def readDB():
+def readDB(filename,size):
     # Open input file
-    infile = open('Log.txt', 'r')
+    infile = open(filename + ".txt", 'r')
  
     # Read node list
     nodelist = []
-    """
-    while (x != 'END'):
-        #x,y = infile.readline().strip().split()[1:]
-        #nodelist.append([float(x), float(y)])
-        x,y,z = infile.readline().strip().split()
-        nodelist.append([int(x), float(y),float(z)])
+    for i in range(0,size):
 
-    # Close input file"""
+        x = infile.readline().strip()
+        nodelist.append([float(x),i])
+   
     infile.close()
     return nodelist
 
