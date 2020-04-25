@@ -1,2 +1,2 @@
 # IC
-This repository will be used to store the codes used in the subject "computational intelligence" from PPGES-UPE
+This repository is intended to store the codes of the activities of the computational intelligence discipline.
